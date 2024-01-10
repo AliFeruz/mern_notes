@@ -18,9 +18,15 @@ const ThemeBtn = () => {
     <div className="p-2 flex-between">
       <label htmlFor="themeToggle" className="cursor-pointer">
         {themeMode === "dark" ? (
-          <MoonIcon className="h-[30px] w-[30px] text-blue-900" />
+          <div className="flex gap-4 items-center">
+          <MoonIcon className="h-[30px] w-[30px] text-cyan-900" />
+          <p className="text-zinc-800 text-xl">Change Theme</p>
+          </div>
         ) : (
-          <SunIcon className="h-[30px] w-[30px] text-green-300" />
+          <div className="flex gap-4 items-center">
+          <SunIcon className="h-[30px] w-[30px] text-cyan-600" />
+          <p className="text-cyan-500 text-xl">Change Theme</p>
+          </div>
         )}
         <input
           type="checkbox"

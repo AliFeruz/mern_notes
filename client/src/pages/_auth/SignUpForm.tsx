@@ -61,9 +61,9 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
     <>
        <Form {...form} >
       <div className="sm:w-420 flex-center flex-col">
-      <h1 className="text-6xl text-orange-500 p-2">Note<span className="text-blue-800 dark:text-green-100">.</span>S</h1>
-      <h2 className="h3-bold md:h2-bold pt-2 sm:pt-4">Create a new account</h2>
-      <p className="dark:text-green-300 text-blue-800 small-medium 
+      <h1 className="text-5xl bg-gradient-to-l from-cyan-900 via-cyan-500 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
+      <h2 className="h3-bold text-zinc-700 dark:text-cyan-600 md:h2-bold pt-2 sm:pt-4">Create a new account</h2>
+      <p className="dark:text-cyan-500 text-cyan-950 small-medium 
         md:base-regular mt-2">To use NoteS, please enter your details</p>
      
     <form onSubmit={form.handleSubmit(onSubmit)}
@@ -73,7 +73,7 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
         name="username"
         render={({ field }) => (
           <FormItem className="flex gap-1 flex-col">
-            <FormLabel>Username</FormLabel>
+            <FormLabel className="shad-form_label">Username</FormLabel>
             <FormControl>
               <Input type="text" className="shad-input"{...field} />
             </FormControl>
@@ -86,7 +86,7 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
         name="email"
         render={({ field }) => (
           <FormItem className="flex gap-1 flex-col">
-            <FormLabel>Email</FormLabel>
+            <FormLabel className="shad-form_label">Email</FormLabel>
             <FormControl>
               <Input type="email" className="shad-input"{...field} />
             </FormControl>
@@ -99,7 +99,7 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
         name="password"
         render={({ field }) => (
           <FormItem className="flex gap-1 flex-col">
-            <FormLabel>Password</FormLabel>
+            <FormLabel className="shad-form_label">Password</FormLabel>
             <FormControl>
               <Input type="password" className="shad-input"{...field} />
             </FormControl>
@@ -111,10 +111,10 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
       className="shad-button_primary">
         SignUp
       </Button>
-      <p className="text-small-regular text-blue-800 dark:text-green-300 text-center mt-2">
+      <p className="text-small-regular text-cyan-950 dark:text-cyan-500 text-center mt-2">
         Already have an account?
         <Link to="/sign-in"
-        className="text-orange-500 text-small-semibold ml-1"> Log in</Link>
+        className="text-zinc-950 dark:text-cyan-400 text-small-semibold ml-1"> Log in</Link>
       </p>
     </form>
     </div>

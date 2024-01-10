@@ -1,4 +1,3 @@
-
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -58,9 +57,9 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
     <>
        <Form {...form} >
       <div className="flex justify-center items-center mt-6 flex-col">
-        <h1 className="text-6xl text-orange-500 items-center p-2">NoteS</h1>
-        <h2 className="h3-bold md:h2-bold pt-2 sm:pt-4">Log in to your account</h2>
-        <p className="text-blue-800 dark:text-green-300 small-medium 
+      <h1 className="text-5xl bg-gradient-to-l from-cyan-900 via-cyan-500 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
+        <h2 className="h3-bold text-zinc-700 dark:text-cyan-600 md:h2-bold pt-2 sm:pt-4">Log in to your account</h2>
+        <p className="text-cyan-950 dark:text-cyan-500 small-medium 
         md:base-regular mt-2">Welcome back! Please enter your details</p>
      
     <form onSubmit={form.handleSubmit(onSubmit)} 
@@ -70,7 +69,7 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
         name="email"
         render={({ field }) => (
           <FormItem className="flex gap-1 flex-col">
-            <FormLabel>Email</FormLabel>
+            <FormLabel className="shad-form_label">Email</FormLabel>
             <FormControl>
               <Input type="email" className="shad-input"{...field} />
             </FormControl>
@@ -83,7 +82,7 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
         name="password"
         render={({ field }) => (
           <FormItem className="flex gap-1 flex-col">
-            <FormLabel>Password</FormLabel>
+            <FormLabel className="shad-form_label">Password</FormLabel>
             <FormControl>
               <Input type="password" className="shad-input"{...field} />
             </FormControl>
@@ -95,10 +94,10 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
       className="shad-button_primary">
         Sign In
       </Button>
-      <p className="text-small-regular text-blue-800 dark:text-green-300 text-center mt-2">
+      <p className="text-small-regular text-cyan-950 dark:text-cyan-600 text-center mt-2">
         Don't have an account?
         <Link to="/sign-up"
-        className="text-orange-500 text-small-semibold ml-1"> Sign up</Link>
+        className="text-zinc-950 dark:text-cyan-400 text-small-semibold ml-1"> Sign up</Link>
       </p>
     </form>
     </div>
