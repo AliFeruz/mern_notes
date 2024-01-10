@@ -24,7 +24,7 @@ app.post("/auth/register", register);
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 
-app.post("api/notes", verifyToken, createUserNote);
+app.post("/notes", createUserNote);
 app.use("/notes", noteRouter)
 
 

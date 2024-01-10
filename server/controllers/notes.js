@@ -13,6 +13,8 @@ export const createUserNote = async (req, res) => {
         res.status(201).json(savedNote);
     } catch (error) {
         res.status(404).json({ message: error.message});
+        console.error("Error creating user note:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
 

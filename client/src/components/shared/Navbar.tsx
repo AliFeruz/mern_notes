@@ -27,7 +27,7 @@ const Navbar = ({isTopofPage}: Props) => {
             <div className="flex-between mx-auto w-5/6">
                 <div className="flex-between w-full gap-16">
                     <Link to="/">
-                    <h1 className="text-5xl text-orange-500 p-2">Note<span className="text-blue-800 dark:text-green-100">.</span>S</h1>
+                    <h1 className="text-5xl text-orange-500 p-2">CRUD</h1>
                     </Link>
                 { isAboveMediumScreens ?(<div className="flex-between w-full">
                     <div className="flex-between mx-10 gap-16">

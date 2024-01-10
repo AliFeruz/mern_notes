@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const INITIAL_USER: IUser = {
-  id: '',
+  _id: '',
   username: '',
   email: '',
   password: '',

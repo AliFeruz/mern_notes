@@ -43,7 +43,7 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
     );
     const loggedIn = await loggedInResponse.json();
     if (!loggedIn) {
-      return toast({ title: "Sign up failed. Please try again." })
+      return toast({ title: "Sign in failed. Please try again." })
     } if (loggedIn) {
       localStorage.setItem("user", JSON.stringify(loggedIn.user));
       localStorage.setItem("token", loggedIn.token);
