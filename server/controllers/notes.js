@@ -33,11 +33,12 @@ export const getUserNotes = async (req, res) => {
 export const updateNote = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, text } = req.body;
+        console.log(id)
+        const { title, text, userId } = req.body;
 
         const updatedNote = await Note.findByIdAndUpdate(
             id,
-            { title, text },
+            { title, text, userId },
             { new: true }
         );
 

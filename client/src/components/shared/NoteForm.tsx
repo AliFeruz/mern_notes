@@ -25,7 +25,7 @@ type PostFormProps = {
 }
 
 const NoteForm = ({ action, note} : PostFormProps) => {
-  const { user } = useUserContext();
+  const { user, token } = useUserContext();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -41,42 +41,52 @@ const NoteForm = ({ action, note} : PostFormProps) => {
  
   async function onSubmit(values: z.infer<typeof NoteValidation>) {
     try {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        const urlencoded = new URLSearchParams();
-        urlencoded.append("userId", values.userId);
-        urlencoded.append("title", values.title);
-        urlencoded.append("text", values.text);
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: urlencoded
-        };
-
-        const response = await fetch(`http://localhost:8080/notes`, requestOptions);
-
-        if (!response.ok) {
-            console.error(`HTTP error! Status: ${response.status}`);
-            const errorData = await response.json();
-            console.error("Error data:", errorData);
-
-            return toast({ title: "Saving Note failed. Please try again." });
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  
+      const urlencoded = new URLSearchParams();
+      urlencoded.append("userId", values.userId);
+      urlencoded.append("title", values.title);
+      urlencoded.append("text", values.text);
+  
+      const requestOptions: RequestInit = {
+        method: action === 'Update' ? "PUT" : "POST",
+        headers: { Authorization: `Bearer ${token}`},
+        body: urlencoded,
+      };
+  
+      const response = await fetch(`http://localhost:8080/notes/${note?._id || ''}${action === 'Update' ? "/update" : ""}`, requestOptions);
+  
+      if (!response.ok) {
+        console.error(`HTTP error! Status: ${response.status}`);
+        const contentType = response.headers.get('content-type');
+  
+        if (contentType?.includes('text/html')) {
+          const errorText = await response.text();
+          console.error("Error HTML:", errorText);
+          return toast({ title: "An unexpected error occurred. Please try again." });
         }
-
-        const newNote = await response.json();
-
-        if (!newNote) {
-            return toast({ title: "Saving Note failed. Please try again." });
-        } else {
-            navigate('/');
-        }
+  
+        const errorData = await response.json();
+        console.error("Error data:", errorData);
+        return toast({ title: "Saving Note failed. Please try again." });
+      }
+  
+      const newNote = await response.json();
+  
+      if (!newNote) {
+        return toast({ title: "Saving Note failed. Please try again." });
+      } else {
+        toast({ title: "Note saved successfully!" });
+        navigate('/');
+      }
     } catch (error) {
-        console.error("Unexpected error:", error);
-        toast({ title: "An unexpected error occurred. Please try again." });
+      console.error("Unexpected error:", error);
+      toast({ title: "An unexpected error occurred. Please try again." });
     }
-}
+  }
+  
+  
 
 
   return (
@@ -111,8 +121,12 @@ const NoteForm = ({ action, note} : PostFormProps) => {
         />
         <Button type="submit"
         className="shad-button_primary whitespace-nowrap">
-          Save
+           {action === 'Update' ? 'Update' : 'Save'}
         </Button>
+       {action === "Update" && (<Button onClick={() => navigate("/")}
+        className="shad-button_primary bg- whitespace-nowrap">
+           Cancel
+        </Button>)}
       </form>
     </Form>
   )

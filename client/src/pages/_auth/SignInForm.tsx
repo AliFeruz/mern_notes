@@ -14,11 +14,13 @@ import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { loginValidation } from "@/lib/validation";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "@/context/authContext";
 
 
 const SignInForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { setUser, setIsAuthenticated, setToken } = useUserContext();
   
 
 const form = useForm<z.infer<typeof loginValidation>>({
@@ -31,6 +33,7 @@ const form = useForm<z.infer<typeof loginValidation>>({
 
 
 async function onSubmit(values: z.infer<typeof loginValidation>) {
+ 
     try {
       const loggedInResponse = await fetch(
         "http://localhost:8080/auth/login",
@@ -46,6 +49,9 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
     } if (loggedIn) {
       localStorage.setItem("user", JSON.stringify(loggedIn.user));
       localStorage.setItem("token", loggedIn.token);
+      setUser(loggedIn.user);
+      setToken(loggedIn.token);
+      setIsAuthenticated(true);
       navigate('/')
     }
     } catch (error) {

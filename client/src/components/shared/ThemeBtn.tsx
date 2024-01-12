@@ -1,41 +1,31 @@
-import React from "react";
 import { useTheme } from "@/context/themeContext";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import { Button } from "../ui/button";
 
 const ThemeBtn = () => {
   const { themeMode, lightTheme, darkTheme } = useTheme();
+  
 
-  const onChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const darkModeStatus = e.currentTarget.checked;
-    if (darkModeStatus) {
-      darkTheme();
-    } else {
-      lightTheme();
-    }
+  const onChangeBtn = () => {
+    themeMode === "dark" ? lightTheme() : darkTheme();
   };
 
   return (
-    <div className="p-2 flex-between">
-      <label htmlFor="themeToggle" className="cursor-pointer">
+    <div className="flex-between">
         {themeMode === "dark" ? (
-          <div className="flex gap-4 items-center">
-          <MoonIcon className="h-[30px] w-[30px] text-cyan-900" />
-          <p className="text-zinc-800 text-xl">Change Theme</p>
-          </div>
+          <Button variant="ghost" className="shad-button_ghost" onClick={onChangeBtn}>
+          <MoonIcon className="h-[30px] w-[30px] dark:text-cyan-600 text-cyan-900"/>
+          <p className="text-zinc-800 dark:text-cyan-500 text-xl">Change Theme</p>
+           </Button>
+          
         ) : (
-          <div className="flex gap-4 items-center">
-          <SunIcon className="h-[30px] w-[30px] text-cyan-600" />
-          <p className="text-cyan-500 text-xl">Change Theme</p>
-          </div>
+          <Button variant="ghost" className="shad-button_ghost" onClick={onChangeBtn}>
+          <SunIcon className="h-[30px] w-[30px] dark:text-cyan-600 text-cyan-900"/>
+          <p className="text-zinc-800 dark:text-cyan-500 text-xl">Change Theme</p>
+           </Button>
         )}
-        <input
-          type="checkbox"
-          id="themeToggle"
-          checked={themeMode === "dark"}
-          onChange={onChangeBtn}
-          className="hidden"
-        />
-      </label>
+       
+      
     </div>
   );
 };

@@ -6,7 +6,7 @@ interface ThemeContextProps {
   lightTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);
 
 interface ThemeProviderProps {
   children: ReactNode;

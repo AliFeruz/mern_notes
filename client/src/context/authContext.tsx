@@ -16,8 +16,9 @@ const INITIAL_STATE = {
   setUser: () => {},
   setIsAuthenticated: () => {},
   checkAuthUser: async () => false as boolean,
-  token: '',
+  token: "",
   Logout: () => Promise<boolean>,
+  setToken: (token: string | null) => {},
 };
 
 type IContextType = {
@@ -28,6 +29,7 @@ type IContextType = {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   checkAuthUser: () => Promise<boolean>;
   token: string | null;
+  setToken: (token: string | null) => void;
   Logout: () => void;
 };
 
@@ -44,8 +46,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsLoading(true);
     try {
       const storedUser = localStorage.getItem('user');
+      const storedToken = localStorage.getItem('token');
+
       if (storedUser) {
         setUser(JSON.parse(storedUser));
+        setToken(storedToken);
         setIsAuthenticated(true);
         return true;
       }
@@ -87,6 +92,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated,
     checkAuthUser,
     token,
+    setToken,
     Logout
   };
 

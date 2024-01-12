@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
+import methodOverride from 'method-override';
 import connectDB from "./mongodb/connect.js";
 import { register } from "./controllers/auth.js";
 import authRoutes from './routes/auth.js';
@@ -19,6 +20,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin"}));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use(methodOverride('_method'));
 
 app.post("/auth/register", register);
 app.use("/auth", authRoutes);

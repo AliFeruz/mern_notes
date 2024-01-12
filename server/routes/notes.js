@@ -4,8 +4,8 @@ import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/:userId/notes", getUserNotes);
-router.patch("/:id/update", verifyToken, updateNote);
-router.delete("/:id/note", deleteNote);
+router.get("/:userId/notes", verifyToken, getUserNotes);
+router.put("/:id/update",  verifyToken, updateNote);
+router.delete("/:id/note", verifyToken, deleteNote);
 
 export default router;
