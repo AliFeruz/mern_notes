@@ -16,9 +16,9 @@ const INITIAL_STATE = {
   setUser: () => {},
   setIsAuthenticated: () => {},
   checkAuthUser: async () => false as boolean,
-  token: "",
   Logout: () => Promise<boolean>,
-  setToken: (token: string | null) => {},
+  setToken: () => {},
+  token: "",
 };
 
 type IContextType = {
@@ -28,9 +28,9 @@ type IContextType = {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   checkAuthUser: () => Promise<boolean>;
-  token: string | null;
   setToken: (token: string | null) => void;
   Logout: () => void;
+  token: string | null;
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsLoading(true);
     try {
       const storedUser = localStorage.getItem('user');
-      const storedToken = localStorage.getItem('token');
+      let storedToken = localStorage.getItem('token');
 
       if (storedUser) {
         setUser(JSON.parse(storedUser));
