@@ -36,7 +36,7 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
  
     try {
       const loggedInResponse = await fetch(
-        "http://localhost:8080/auth/login",
+        "https://crud-note.onrender.com/auth/login",
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},

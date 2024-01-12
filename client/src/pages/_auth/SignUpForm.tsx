@@ -46,7 +46,7 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
       body: urlencoded,
     };
     try {
-      const newUser = await fetch("http://localhost:8080/auth/register", requestOptions)
+      const newUser = await fetch("https://crud-note.onrender.com/auth/register", requestOptions)
       if (!newUser) {
         return toast({ title: "Sign up failed. Please try again." })
       } else {

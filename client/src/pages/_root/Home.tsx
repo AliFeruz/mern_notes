@@ -10,7 +10,7 @@ const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
 
   const getUserNotes = async () => {
-    const response = await fetch(`http://localhost:8080/notes/${userId}/notes`, {
+    const response = await fetch(`https://crud-note.onrender.com/notes/${userId}/notes`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}`}
     });
