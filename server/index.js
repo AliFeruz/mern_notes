@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
-import methodOverride from 'method-override';
 import connectDB from "./mongodb/connect.js";
 import { register } from "./controllers/auth.js";
 import authRoutes from './routes/auth.js';
@@ -14,19 +13,26 @@ import { createUserNote } from "./controllers/notes.js";
 
 dotenv.config();
 const app = express();
+
+const corsOptions = {
+    origin: "https://crudnote.onrender.com", 
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  };
+
 app.use(express.json());
 app.use(express.urlencoded({ limit: "30mb", extended: true}));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin"}));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(cors());
-app.use(methodOverride('_method'));
+app.use(cors(corsOptions));
 
 app.post("/auth/register", register);
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 
-app.post("/notes", createUserNote);
+app.post("/notes", verifyToken, createUserNote);
 app.use("/notes", noteRouter)
 
 
