@@ -28,7 +28,7 @@ type IContextType = {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   checkAuthUser: () => Promise<boolean>;
-  setToken: () => void;
+  setToken: (token: string | null) => void;
   Logout: () => void;
   token: string | null;
 };
