@@ -38,7 +38,7 @@ const Navbar = ({isTopofPage}: Props) => {
             <div className="flex-between mx-auto w-5/6">
                 <div className="flex-between w-full gap-16">
                     <Link to="/">
-                    <h1 className="text-5xl bg-gradient-to-l from-cyan-900 via-cyan-500 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
+                    <h1 className="text-5xl bg-gradient-to-l from-cyan-950 via-cyan-600 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
                     </Link>
                 { isAboveMediumScreens ?(<div className="flex-between w-3/5">
                     <ThemeBtn/>

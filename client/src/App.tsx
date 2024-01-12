@@ -9,6 +9,8 @@ import { useEffect, useState } from "react"
 import CreateNote from "./pages/_root/CreateNote"
 import Profile from "./pages/_root/Profile"
 import { ThemeProvider } from "./context/themeContext"
+import NotFound from "./pages/NotFound"
+import UpdateNote from "./pages/_root/UpdateNote"
 
 
 function App() {
@@ -51,8 +53,10 @@ function App() {
       isTopofPage={isTopofPage}/>}>
       <Route path="/" element={<Home/>}/>
       <Route path="/createnote" element={<CreateNote/>}/>
+      <Route path="/update-note/:_id" element={<UpdateNote/>}/>
       <Route path="/profile" element={<Profile/>}/>
       </Route>
+      <Route path="/*" element={<NotFound/>}/>
      </Routes>
       </ThemeProvider>
      <Toaster/>

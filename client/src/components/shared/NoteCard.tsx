@@ -3,6 +3,7 @@ import { Note } from "@/types";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Button } from "../ui/button";
 import { useUserContext } from "@/context/authContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +15,7 @@ type Props = {
 const NoteCard = ({ note, onDeleteNote }: Props) => {
   const { title, text, createdAt, _id } = note;
   const { token } = useUserContext();
+  const navigate = useNavigate();
 
   const handleDeleteNote = async () => {
     try {
@@ -38,7 +40,7 @@ const NoteCard = ({ note, onDeleteNote }: Props) => {
   return (
     <div className="bg-cyan-100 dark:bg-slate-200 p-4 rounded-md shadow-md">
         <div className="flex items-center justify-between p-2 gap-3 mb-3">
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={() => navigate("/update-note/:_id", id)}>
             <PencilIcon className="w-6 h-6 text-cyan-900 dark:text-cyan-600"/>
             </Button>
             <Button variant="ghost" onClick={handleDeleteNote}>

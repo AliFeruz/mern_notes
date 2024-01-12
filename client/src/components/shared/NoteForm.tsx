@@ -16,13 +16,15 @@ import { NoteValidation } from "@/lib/validation";
 import { useToast } from "../ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "@/context/authContext";
+import { Note } from "@/types";
 
  
 type PostFormProps = {
   action: 'Create'| 'Update';
+  note?: Note
 }
 
-const NoteForm = ({ action} : PostFormProps) => {
+const NoteForm = ({ action, note} : PostFormProps) => {
   const { user } = useUserContext();
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -32,8 +34,8 @@ const NoteForm = ({ action} : PostFormProps) => {
     resolver: zodResolver(NoteValidation),
     defaultValues: {
       userId: user?._id,
-      title: "",
-      text: "",
+      title: note?.title || "",
+      text: note?.text || "",
     },
   })
  
