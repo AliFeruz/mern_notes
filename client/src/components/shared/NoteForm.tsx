@@ -41,9 +41,7 @@ const NoteForm = ({ action, note} : PostFormProps) => {
  
   async function onSubmit(values: z.infer<typeof NoteValidation>) {
     try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-  
+
       const urlencoded = new URLSearchParams();
       urlencoded.append("userId", values.userId);
       urlencoded.append("title", values.title);
@@ -86,8 +84,6 @@ const NoteForm = ({ action, note} : PostFormProps) => {
     }
   }
   
-  
-
 
   return (
     <Form {...form}>

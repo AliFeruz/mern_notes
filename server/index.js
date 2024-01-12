@@ -1,8 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import helmet from "helmet";
-import bodyParser from "body-parser";
 import connectDB from "./mongodb/connect.js";
 import { register } from "./controllers/auth.js";
 import authRoutes from './routes/auth.js';
@@ -23,9 +21,7 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(express.urlencoded({ limit: "30mb", extended: true}));
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin"}));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
+
 app.use(cors(corsOptions));
 
 app.post("/auth/register", register);
