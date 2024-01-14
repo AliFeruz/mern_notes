@@ -5,7 +5,6 @@ import { ArrowRightEndOnRectangleIcon, TrashIcon } from '@heroicons/react/24/sol
 import { useNavigate } from 'react-router';
 
 
-
 const Profile = () => {
   const { user, setUser, setIsAuthenticated, Logout, token, setToken } = useUserContext();
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const Profile = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/user/${_id}`, {
+      const response = await fetch(`https://crud-notes.vercel.app/user/${_id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ const NoteCard = ({ note, onDeleteNote }: Props) => {
 
   const handleDeleteNote = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/notes/${_id}/note`, {
+      const response = await fetch(`https://crud-notes.vercel.app/notes/${_id}/note`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
