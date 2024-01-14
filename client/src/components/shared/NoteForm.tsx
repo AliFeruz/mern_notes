@@ -53,7 +53,7 @@ const NoteForm = ({ action, note} : PostFormProps) => {
         body: urlencoded,
       };
   
-      const response = await fetch(`https://crud-note.onrender.com/notes/${note?._id || ''}${action === 'Update' ? "/update" : ""}`, requestOptions);
+      const response = await fetch(`http://localhost:8080/notes/${note?._id || ''}${action === 'Update' ? "/update" : ""}`, requestOptions);
   
       if (!response.ok) {
         console.error(`HTTP error! Status: ${response.status}`);

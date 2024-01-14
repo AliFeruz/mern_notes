@@ -1,15 +1,11 @@
 import Navbar from "@/components/shared/Navbar";
 import { Outlet } from "react-router-dom";
 
-type Props = {
-    isTopofPage: boolean;
-}
 
-
-const RootLayout = ({isTopofPage} : Props) => {
+const RootLayout = () => {
   return (
     <div className="w-full ">
-      <Navbar isTopofPage={isTopofPage}/>
+      <Navbar/>
       <section>
         <Outlet/>
       </section>

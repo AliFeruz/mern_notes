@@ -14,7 +14,6 @@ import UpdateNote from "./pages/_root/UpdateNote"
 
 
 function App() {
-  const [isTopofPage, setIsTopofPage] = useState<boolean>(true);
   const [themeMode, setThemeMode] = useState('light');
 
   const darkTheme = () => {
@@ -25,20 +24,8 @@ function App() {
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsTopofPage(true);
-      }
-      if (window.scrollY !== 0) setIsTopofPage(false);
-    };
-  
-    window.addEventListener("scroll", handleScroll);
-  
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
       document.querySelector('html')?.classList.remove('dark', 'light');
       document.querySelector('html')?.classList.add(themeMode);
-    };
   }, [themeMode]);
 
   return (
@@ -49,8 +36,7 @@ function App() {
       <Route path="/sign-up" element={<SignUpForm/>}/>
       <Route path="/sign-in" element={<SignInForm/>}/>
       </Route>
-      <Route element={<RootLayout
-      isTopofPage={isTopofPage}/>}>
+      <Route element={<RootLayout/>}>
       <Route path="/" element={<Home/>}/>
       <Route path="/createnote" element={<CreateNote/>}/>
       <Route path="/update-note/:_id" element={<UpdateNote/>}/>

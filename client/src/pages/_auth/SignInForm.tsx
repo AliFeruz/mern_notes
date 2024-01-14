@@ -36,7 +36,7 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
  
     try {
       const loggedInResponse = await fetch(
-        "https://crud-note.onrender.com/auth/login",
+        "http://localhost:8080/auth/login",
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -63,10 +63,9 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
     <>
        <Form {...form} >
       <div className="flex justify-center items-center mt-6 flex-col">
-      <h1 className="text-5xl bg-gradient-to-l from-cyan-900 via-cyan-500 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
-        <h2 className="h3-bold text-zinc-700 dark:text-cyan-600 md:h2-bold pt-2 sm:pt-4">Log in to your account</h2>
-        <p className="text-cyan-950 dark:text-cyan-500 small-medium 
-        md:base-regular mt-2">Welcome back! Please enter your details</p>
+      <h1 className="logo">CRUD</h1>
+        <h2 className="text text-xl pt-2 sm:pt-4">Log in to your account</h2>
+        <p className="text md:base-regular mt-2">Welcome back! Please enter your details</p>
      
     <form onSubmit={form.handleSubmit(onSubmit)} 
     className="flex flex-col gap-5 w-full mt-4">
@@ -100,10 +99,10 @@ async function onSubmit(values: z.infer<typeof loginValidation>) {
       className="shad-button_primary">
         Sign In
       </Button>
-      <p className="text-small-regular text-cyan-950 dark:text-cyan-600 text-center mt-2">
+      <p className="text text-center mt-2">
         Don't have an account?
         <Link to="/sign-up"
-        className="text-zinc-950 dark:text-cyan-400 text-small-semibold ml-1"> Sign up</Link>
+        className="text font-bold text-xl ml-1"> Sign up</Link>
       </p>
     </form>
     </div>

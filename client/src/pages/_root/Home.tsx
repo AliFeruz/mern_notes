@@ -10,7 +10,7 @@ const Home = () => {
   const [notes, setNotes] = useState<Note[]>([]);
 
   const getUserNotes = async () => {
-    const response = await fetch(`https://crud-note.onrender.com/notes/${userId}/notes`, {
+    const response = await fetch(`http://localhost:8080/notes/${userId}/notes`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}`}
     });
@@ -33,7 +33,7 @@ const Home = () => {
     <div className="flex flex-1 mt-24">
     <div className="common-container">
       <div className="max-w-5xl flex-start gap-3 justify-start w-full">
-        <h2 className="h3-bold md:h2-bold text-zinc-800 dark:text-cyan-600 text-left w-full">All Note's</h2>
+        <h2 className="text-4xl font-bold text-zinc-800 dark:text-cyan-500 text-left w-full">All Note's</h2>
       </div>
       <div className="grid-container">
         {notes.slice().reverse().map((note: Note) => (

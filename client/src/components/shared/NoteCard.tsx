@@ -18,7 +18,7 @@ const NoteCard = ({ note, onDeleteNote }: Props) => {
 
   const handleDeleteNote = async () => {
     try {
-      const response = await fetch(`https://crud-note.onrender.com/notes/${_id}/note`, {
+      const response = await fetch(`http://localhost:8080/notes/${_id}/note`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -37,23 +37,24 @@ const NoteCard = ({ note, onDeleteNote }: Props) => {
   };
 
   return (
-    <div className="bg-cyan-100 dark:bg-slate-200 p-4 rounded-md shadow-md">
+    <div className="bg-cyan-100 dark:bg-gradient-to-t dark:from-[#17065c] dark:to-fuchsia-800 p-4 shadow-text rounded-md shadow-lg">
+      
         <div className="flex items-center justify-between p-2 gap-3 mb-3">
             <Link to={`/update-note/${_id}`}>
-            <PencilIcon className="w-6 h-6 text-cyan-900 dark:text-cyan-600"/>
+            <PencilIcon className="w-6 h-6 icon"/>
             </Link>
             <Button variant="ghost" onClick={handleDeleteNote}>
-            <TrashIcon className="w-6 h-6 text-cyan-90 dark:text-cyan-600"/>
+            <TrashIcon className="w-6 h-6 icon"/>
             </Button>
         </div>
-        <div className="p-2 border-t border-cyan-400">
-        <h1 className="text-xl text-zinc-700 dark:text-cyan-600 font-bold mb-2">{title}</h1>
+        <div className="p-2 border-t border-icon">
+        <h1 className="text-xl text font-bold mb-2">{title}</h1>
         </div>
-        <div className="p-2 h-[200px] bg-cyan-200 dark:bg-slate-300 rounded-md">
-        <p className="text-cyan-900">{text}</p>
+        <div className="p-2 h-[200px] rounded-md">
+        <p className="text text-lg">{text}</p>
         </div>
-      <div className="flex items-center mt-4 border-t border-cyan-400 pt-4 text-gray-500">
-        <span>Created at: {multiFormatDateString(createdAt)}</span>
+      <div className="flex items-center mt-4 dark:text-cyan-200 border-t border-text pt-4 text-gray-500">
+        <span>Created: {multiFormatDateString(createdAt)}</span>
       </div>
     </div>
   );

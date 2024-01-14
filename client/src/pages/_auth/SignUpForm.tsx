@@ -46,7 +46,7 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
       body: urlencoded,
     };
     try {
-      const newUser = await fetch("https://crud-note.onrender.com/auth/register", requestOptions)
+      const newUser = await fetch("http://localhost:8080/auth/register", requestOptions)
       if (!newUser) {
         return toast({ title: "Sign up failed. Please try again." })
       } else {
@@ -61,9 +61,9 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
     <>
        <Form {...form} >
       <div className="sm:w-420 flex-center flex-col">
-      <h1 className="text-5xl bg-gradient-to-l from-cyan-900 via-cyan-500 to-pink-700 bg-clip-text text-transparent p-2 font-bold tracking-wide text-shadow-md transition duration-300 ease-in-out hover:text-zinc-500">CRUD</h1>
-      <h2 className="h3-bold text-zinc-700 dark:text-cyan-600 md:h2-bold pt-2 sm:pt-4">Create a new account</h2>
-      <p className="dark:text-cyan-500 text-cyan-950 small-medium 
+      <h1 className="logo">CRUD</h1>
+      <h2 className="h3-bold text md:h2-bold pt-2 sm:pt-4">Create a new account</h2>
+      <p className="text small-medium 
         md:base-regular mt-2">To use NoteS, please enter your details</p>
      
     <form onSubmit={form.handleSubmit(onSubmit)}
@@ -111,10 +111,10 @@ async function onSubmit(values: z.infer<typeof registerValidation>) {
       className="shad-button_primary">
         SignUp
       </Button>
-      <p className="text-small-regular text-cyan-950 dark:text-cyan-500 text-center mt-2">
+      <p className="text text-center mt-2">
         Already have an account?
         <Link to="/sign-in"
-        className="text-zinc-950 dark:text-cyan-400 text-small-semibold ml-1"> Log in</Link>
+        className="text text-xl font-bold ml-2"> Log in</Link>
       </p>
     </form>
     </div>

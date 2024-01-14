@@ -22,7 +22,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(express.urlencoded({ limit: "30mb", extended: true}));
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.post("/auth/register", register);
 app.use("/auth", authRoutes);
